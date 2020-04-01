@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="articles for tech &amp; life &amp; thoughts"><title>Note Collection | Marktub</title><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/2.0.4/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.css"><meta name="generator" content="Hexo 4.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Note Collection</h1><a id="logo" href="/.">Marktub</a><p class="description">Do not go gentle into that good night.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-4-4"><div class="content_container"><div class="post"><h1 class="post-title">Note Collection</h1><div class="post-meta">2018-08-28<span> | </span><span class="category"><a href="/categories/notes/">notes</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Azure"><span class="toc-number">1.</span> <span class="toc-text">Azure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NGINX"><span class="toc-number">2.</span> <span class="toc-text">NGINX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum"><span class="toc-number">3.</span> <span class="toc-text">yum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vim"><span class="toc-number">4.</span> <span class="toc-text">Vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegEx"><span class="toc-number">5.</span> <span class="toc-text">RegEx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Domain"><span class="toc-number">6.</span> <span class="toc-text">Domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gitlab"><span class="toc-number">7.</span> <span class="toc-text">Gitlab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Markdown"><span class="toc-number">8.</span> <span class="toc-text">Markdown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-number">9.</span> <span class="toc-text">Redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL"><span class="toc-number">10.</span> <span class="toc-text">MySQL</span></a></li></ol></div></div><div class="post-content"><p><strong><em>Note Collection: Including Azure, NGINX, yun, Vim, RegEx, Domain, SSL, Gitlab, Markdown, Redis, MySQL</em></strong></p>
+<h3 id="Azure"><a href="#Azure" class="headerlink" title="Azure"></a>Azure</h3><ol>
+<li>目前在用 centos7.5</li>
+<li>2 cores/4G/60G HDD: 70$/Month, Tencent Cloud / Ali Cloud -&gt; 220￥/Month</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zclaiqcc@zclaiqccAzure ~]$ cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.5.1804 (Core)</span><br></pre></td></tr></table></figure>
+
+<h3 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h3><ul>
+<li><a href="http://nginx.org/en">http://nginx.org/en</a></li>
+<li><a href="https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx">(13: Permission denied) while connecting to upstream:[nginx]</a></li>
+<li><a href="https://cloud.tencent.com/document/product/400/4143">HTTPS - SSL on NGINX 证书部署</a>[^2]</li>
+<li><a href="http://nginx.org/en/docs/http/request_processing.html">How nginx processes a request</a></li>
+<li>server name is matched by <code>exact name</code>, <code>wildcard names(start wildcard is ahead of end wildcard)</code>, <code>regular expressions</code></li>
+<li><code>_</code> is a catch-all server name, so as <code>--</code>, <code>!@#</code> and so on invalid server name</li>
+<li><code>&quot;&quot;</code> match the request without “Host” header field</li>
+<li>location is mathced from up to bottom and always endwith <code>\</code></li>
+<li>NGINX supported <code>load balancing</code> methods<ul>
+<li>round-robin: divided by time</li>
+<li>least-connected: all server will be maintained in a low utilization</li>
+<li>ip-hash: a specific ip will always redirected to the same server</li>
+</ul>
+</li>
+<li><a href="http://nginx.org/en/docs/http/load_balancing.html">load balancer</a></li>
+<li>In NGINX, weights are managed independently by each worker process. </li>
+<li>NGINX Plus uses a shared memory segment for upstream data, so weights are shared between workers and traffic is distributed more accurately.</li>
+<li>In NGINX, <code>max_fails</code> and <code>fail_timeout</code> control the behavior of <code>health check</code> and <code>failure detaction</code></li>
+<li>NGINX Plus uses a set of out-of-band(outer detection) <code>health checks</code>, and a <code>slow-start</code> mechanism bring server back</li>
+<li><a href="https://docs.nginx.com/nginx/admin-guide/">Admin Guide – NGINX</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s [signal]</span><br></pre></td></tr></table></figure>
+
+<h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><ul>
+<li>Yellow dog Updater, Modified</li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/rh_yum_cheatsheet_1214_jcs_print-1.pdf">yum_cheatsheet</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum upgrade</span><br><span class="line">yum groupinstall <span class="string">"Development Tools"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h3><ul>
+<li>Vi IMproved</li>
+<li><a href="https://www.vim.org/">https://www.vim.org/</a></li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/byte-of-vim.pdf">byte-of-vim.pdf</a></li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/vim-1.0.pdf">vim-1.0.pdf</a></li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/vimbook-OPL.pdf">vimbook-OPL.pdf</a></li>
+<li>vimtutor cn</li>
+<li><code>CTRL + ]</code>: jump &lt;===&gt; <code>CTRL + t</code> / <code>CTRL + r</code></li>
+<li><code>0</code> / <code>^</code>: <code>HOME</code></li>
+<li><code>$</code>: <code>END</code></li>
+<li><code>w</code> / <code>W</code>: move by word &lt;===&gt; <code>b</code> / <code>B</code> &lt;===&gt; <code>e</code> / <code>E</code></li>
+<li><code>[{</code>: to <code>\{</code> &lt;===&gt; <code>}]</code></li>
+<li><code>*</code>: search the word under cursor &lt;===&gt; <code>#</code></li>
+<li><code>gd</code> / <code>gD</code>: goto declaration</li>
+<li><code>a</code>: append &lt;===&gt; <code>i</code> </li>
+<li><code>d2w</code>: delete 2 words</li>
+<li><code>d$</code>: delete to the end of line</li>
+<li><code>u</code> / <code>U</code>: undo / undo a line &lt;===&gt; <code>CTRL + r</code></li>
+<li><code>p</code>: put / paste</li>
+<li><code>rx</code>: replace with x</li>
+<li><code>ce</code>: change until the end of a word, similar like <code>d</code>, but into <code>INSERT</code> mode auto</li>
+<li><code>%</code>: jump to parentheses</li>
+<li><code>:%s/old/new/gc</code>: replace with confirmation</li>
+<li><code>v</code>: VISUAL mode</li>
+<li><code>!</code>: execute command</li>
+<li><code>r</code>: retrive and put</li>
+<li><code>R</code>: REPLACE mode</li>
+<li><code>y</code>: yank(copy)</li>
+<li><code>:set hls is</code>: Set the ‘hlsearch’ and ‘incsearch’ options</li>
+<li><code>CTRL + w</code> double: jump window</li>
+</ul>
+<p><img src="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/pattern.png" alt="pattern.png"></p>
+<h3 id="RegEx"><a href="#RegEx" class="headerlink" title="RegEx"></a>RegEx</h3><ul>
+<li>Regular Expression</li>
+<li><a href="https://www.regular-expressions.info/">Regular Expression</a></li>
+<li><a href="https://deerchao.net/tutorials/regex/regex.htm">正则表达式30分钟入门教程</a></li>
+<li><a href="http://tool.oschina.net/uploads/apidocs/jquery/regexp.html">表达式全集</a></li>
+<li><a href="https://docs.microsoft.com/zh-cn/dotnet/standard/base-types/regular-expression-language-quick-reference">正则表达式语言-MSDN</a></li>
+<li><code>character</code>: Literal Characters, match char exactly</li>
+<li><code>metacharacters</code>: <code>\</code>, <code>^</code> , <code>$</code> , <code>.</code> , <code>|</code> , <code>?</code> , <code>*</code> , <code>+</code> , <code>(</code> , <code>)</code> , <code>[</code> , <code>{</code> </li>
+<li><code>[characters]</code>: Character Classes(Set), such as <code>[ae]</code> match an <code>a</code> or an <code>e</code>,  <code>[0-9a-fxA-FX]</code> matches a hexadecimal digit or the letter X</li>
+<li><code>\b</code>: word <strong>b</strong>oundary</li>
+<li><code>\d</code>: <strong>d</strong>igit</li>
+<li><code>\w</code>: <strong>w</strong>ord</li>
+<li><code>\s</code>:  a whitespace character (includes tabs and line breaks)</li>
+<li><code>.</code>: any single character except line break</li>
+<li><code>^</code>: start of a the string &lt;===&gt; <code>$</code></li>
+<li><code>|</code>: alternation, such as <code>(cat|dog) food</code></li>
+<li><code>*</code>: dup 0-x times</li>
+<li><code>+</code>: dup 1-x times</li>
+<li><code>{n&lt;,&lt;m&gt;&gt;}</code>: repeat n (to m) times</li>
+</ul>
+<h3 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h3><ul>
+<li><a href="http://zclaiqcc.com">zclaiqcc.com</a></li>
+</ul>
+<p><img src="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/%E8%85%BE%E8%AE%AF%E4%BA%91%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E9%85%8D%E7%BD%AE%E9%A1%B5.jpg" alt="腾讯云域名解析配置页.jpg"></p>
+<h3 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a>Gitlab</h3><ul>
+<li><a href="https://about.gitlab.com/installation/#centos-7">Omnibus package installation#centos-7</a></li>
+<li><a href="https://docs.gitlab.com/omnibus/settings/nginx.html#using-a-non-bundled-web-server">Using a non-bundled web-server</a></li>
+</ul>
+<h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><ul>
+<li><a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown</a></li>
+<li><a href="https://www.markdownguide.org/cheat-sheet/">https://www.markdownguide.org/cheat-sheet/</a></li>
+<li><a href="http://markdowncss.github.io/">http://markdowncss.github.io/</a></li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/markdown-cheatsheet-online.pdf">markdown-cheatsheet-online.pdf</a></li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/markdown-modest.css">markdown-modes.css - customized by zclaiqcc</a></li>
+<li><a href="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/markdown-air.css">markdown-air.css - customized by zclaiqcc</a></li>
+<li><code>~~this~~</code>: <del>this</del></li>
+<li>Here’s a sentence with a footnote. [^1]</li>
+<li>:+1:</li>
+</ul>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p><strong>* 官方 install 文档并不怎么能看  *</strong></p>
+<ul>
+<li>REmote DIctionary Server</li>
+<li><a href="https://redis.io/">https://redis.io/</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-secure-redis-centos-7">How to Install and Secure Redis on Centos7</a></li>
+<li><a href="https://github.com/MicrosoftArchive/redis/releases">Redis on windows</a></li>
+<li>key, value is limited by <code>512MB</code></li>
+<li>Redis lists are implemented via <code>Linked Lists</code>.</li>
+<li><a href="https://blog.csdn.net/caishenfans/article/details/44784131">Redis的五种对象类型及其底层实现</a></li>
+<li><a href="http://antirez.com/news/92">About Redis Sets memory efficiency</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable redis</span><br><span class="line">systemctl restart redis.service</span><br><span class="line">systemctl status redis.service</span><br><span class="line">vim /etc/redis.conf</span><br><span class="line"></span><br><span class="line">redis-cli -h [hostname]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> auth password</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/linux-installation-yum-repo.html">Installing MySQL on Linux Using the MySQL Yum Repository</a></li>
+<li>mysqld: MySQL daemon</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_database">12.14 Information Functions</a></li>
+</ul>
+<p>[^1]: This is the footnote.<br>[^2]: <img src="https://zclaiqcc-1257437822.cos.ap-beijing.myqcloud.com/SSLOnNginx.jpg" alt="SSLOnNginx.jpg"></p>
+</div><div class="tags"><a href="/tags/azure-nginx-yun-vim-regex-domain-ssl-gitlab-markdown-redis-mysql/"><i class="fa fa-tag"></i>azure, nginx, yun, vim, regex, domain, ssl, gitlab, markdown, redis, mysql</a></div><div class="post-nav"><a class="pre" href="/2019/03/29/wtfpython/">wtfpython Note</a><a class="next" href="/2005/04/08/GIT%20-%20the%20stupid%20content%20tracker/">GIT - the stupid content tracker</a></div></div></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

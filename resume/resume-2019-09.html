@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="articles for tech &amp; life &amp; thoughts"><title>赵昶 | Marktub</title><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/2.0.4/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.css"><meta name="generator" content="Hexo 4.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">赵昶</h1><a id="logo" href="/.">Marktub</a><p class="description">Do not go gentle into that good night.</p></div><div id="nav-menu"><a href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-4-4"><div class="content_container"><div class="post"><h1 class="post-title">赵昶</h1><div class="post-content"><p>Phone: 13521952409<br>Email: <a href="mailto:zhao.chang.dut@gmail.com">zhao.chang.dut@gmail.com</a></p>
+<h2 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h2><p><strong>独到科技（北京）有限公司</strong> | 2017.7 - 2019.9</p>
+<blockquote>
+<p>致力于通过技术赋能社群，重新构建社群的生命力，产品有社群管理工具<code>紫豆助手</code>和社区团购的团长赋能工具<code>团小蜜</code></p>
+</blockquote>
+<ul>
+<li>主要负责<code>后端开发</code>，经历过多个项目从零到上线，有<code>前端开发</code>经验，能够独立完成开发任务</li>
+<li>作为<code>技术负责人</code>，带领研发团队（4-6 人）进行两个项目的开发和维护</li>
+</ul>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><p><strong>紫豆助手</strong> | 2017.12 - 2019.9</p>
+<blockquote>
+<p>针对企业用户独立研发的社群运营管理系统</p>
+</blockquote>
+<ul>
+<li>负责紫豆助手前后端开发，使用 Tornado 作为后端异步框架，前后端通过 RESTful API 交互，参与项目重构设计和实施</li>
+<li>使用 RabbitMQ 实现设备端和服务器之间的消息可靠传输，实现在不稳定网络的情况下重连恢复机制，以及数据上/下行的可靠传输，能做到消息 100% 不重不漏；通过优先级队列实现任务插队</li>
+<li>设计和实现 ORM 对数据层进行统一访问，结合 Redis 封装简单易用的业务层数据缓存操作，减小数据库读压力；并对系统中平均响应时长最慢的接口排序，进行 Python 高性能和数据库查询优化，把多个十秒以上的接口优化到一秒内</li>
+<li>设计和实现 MsgRoute 负责把消息路由到指定的处理任务，实现了指定类型的消息处理任务注册，并且支持配置优先级，以及强行终止后续任务执行</li>
+<li>使用 async/await 结合 Celery 执行异步和定时任务，实现每日定时群发/入群欢迎语/关键词回复/智能陪聊/永久入群二维码/广告检测/数据统计等功能</li>
+<li>使用 Angular 框架完成前端个人号模块，实现 IM 聊天系统和好友/群管理，使用 Websocket 实现聊天数据传输</li>
+<li>使用 Vue 框架独立完成内部后台管理系统，方便其他团队对客户进行操作和后台数据展示</li>
+<li>Nginx 作为反向代理和负载均衡服务器，数据库使用 MongoDB，Redis 做缓存</li>
+</ul>
+<p><strong>团小蜜</strong> | 2019.7 - 2019.9</p>
+<blockquote>
+<p>赋能社区团购时代的小程序</p>
+</blockquote>
+<ul>
+<li>负责团小蜜前后端开发，实现小程序登录注册，实现货架/工具/数据/账户/编辑页</li>
+<li>实现微信支付与提现，在高并发情况下保证数据一致性</li>
+<li>参与需求分析和项目设计，编写项目接口文档</li>
+<li>负责 Code Review，项目前后端上线和维护</li>
+</ul>
+<h2 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h2><ol>
+<li>熟练掌握 Python，能够使用 Java/Kotlin 进行开发，了解 C/C++</li>
+<li>熟悉 Tornado/Flask 框架，有 Tornado 异步项目实践经验，对异步编程有比较深入的理解，了解 Django 框架</li>
+<li>掌握常见数据结构和设计模式，熟悉 HTTP，TCP/IP 协议，能够使用 Websocket 进行双向数据传输</li>
+<li>掌握 HTML/CSS/JS，能够使用 Angular/Vue 进行前端开发，有小程序前端开发经验</li>
+<li>熟练掌握 Git，熟悉 Linux 常用命令，能够进行基本运维，能够使用 Nginx 进行反向代理和负载均衡配置</li>
+<li>能够使用 RabbitMQ 进行双向数据传输，并对保障传输可靠性和稳定性有实践经验</li>
+<li>能够使用 Celery 处理异步任务、定时任务，配合 MQ 进行数据传输</li>
+<li>掌握 MongoDB/MySQL/Redis 数据库，了解 ElasticSearch</li>
+<li>了解 Android 开发</li>
+<li>英语六级，有良好的英文阅读能力</li>
+</ol>
+<h2 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h2><p>2013.9 - 2017.7 | 大连理工大学 | 软件工程 | 本科</p>
+</div></div></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

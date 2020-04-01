@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="articles for tech &amp; life &amp; thoughts"><title>Redis Note | Marktub</title><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/2.0.4/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.css"><meta name="generator" content="Hexo 4.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Redis Note</h1><a id="logo" href="/.">Marktub</a><p class="description">Do not go gentle into that good night.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-4-4"><div class="content_container"><div class="post"><h1 class="post-title">Redis Note</h1><div class="post-meta">2019-08-24<span> | </span><span class="category"><a href="/categories/notes/">notes</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-Pipelining"><span class="toc-number">1.</span> <span class="toc-text">Redis Pipelining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pub-Sub"><span class="toc-number">2.</span> <span class="toc-text">Pub&#x2F;Sub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-optimization"><span class="toc-number">3.</span> <span class="toc-text">Memory optimization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transactions"><span class="toc-number">4.</span> <span class="toc-text">Transactions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-does-not-support-roll-backs"><span class="toc-number">4.1.</span> <span class="toc-text">Redis does not support roll backs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-Mass-Insertion"><span class="toc-number">5.</span> <span class="toc-text">Redis Mass Insertion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-the-protocol-Luke"><span class="toc-number">5.1.</span> <span class="toc-text">Use the protocol, Luke</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Partitioning"><span class="toc-number">6.</span> <span class="toc-text">Partitioning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Purpose"><span class="toc-number">6.1.</span> <span class="toc-text">Purpose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strategy"><span class="toc-number">6.2.</span> <span class="toc-text">Strategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Different-implementations-of-partitioning"><span class="toc-number">6.3.</span> <span class="toc-text">Different implementations of partitioning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Disadvantages-of-partitioning"><span class="toc-number">6.4.</span> <span class="toc-text">Disadvantages of partitioning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presharding"><span class="toc-number">6.5.</span> <span class="toc-text">Presharding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implementations-of-Redis-partitioning"><span class="toc-number">6.6.</span> <span class="toc-text">Implementations of Redis partitioning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Secondary-indexing"><span class="toc-number">7.</span> <span class="toc-text">Secondary indexing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-data-types-and-abstractions"><span class="toc-number">8.</span> <span class="toc-text">Redis data types and abstractions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Keys"><span class="toc-number">8.1.</span> <span class="toc-text">Redis Keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Strings"><span class="toc-number">8.2.</span> <span class="toc-text">Redis Strings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Lists"><span class="toc-number">8.3.</span> <span class="toc-text">Redis Lists</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Hashes"><span class="toc-number">8.4.</span> <span class="toc-text">Redis Hashes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Sets"><span class="toc-number">8.5.</span> <span class="toc-text">Redis Sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Sorted-sets"><span class="toc-number">8.6.</span> <span class="toc-text">Redis Sorted sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bitmaps"><span class="toc-number">8.7.</span> <span class="toc-text">Bitmaps</span></a></li></ol></li></ol></div></div><div class="post-content"><p><strong><em>Redis means <code>REmote DIctionary Server</code></em></strong></p>
+<h2 id="Redis-Pipelining"><a href="#Redis-Pipelining" class="headerlink" title="Redis Pipelining"></a>Redis Pipelining</h2><p>save the <code>RTT(Round Trip Time)</code>, but it’s better to send less than a batch of 10k commands because the RTT will be much a small part of the whole time though the memory occupied will be much bigger.</p>
+<h2 id="Pub-Sub"><a href="#Pub-Sub" class="headerlink" title="Pub/Sub"></a>Pub/Sub</h2><h2 id="Memory-optimization"><a href="#Memory-optimization" class="headerlink" title="Memory optimization"></a>Memory optimization</h2><p>Use hashes when possible.</p>
+<p>But <code>the Redis Way</code> is that the user must understand how things work so that he is able to pick the best compromise, and to understand how the system will behave exactly.</p>
+<h2 id="Transactions"><a href="#Transactions" class="headerlink" title="Transactions"></a>Transactions</h2><p><code>MULTI</code>/<code>EXEC</code>/<code>Discarding</code>/<code>WATCH</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; MULTI</span><br><span class="line">OK</span><br><span class="line">&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line">&gt; INCR bar</span><br><span class="line">QUEUED</span><br><span class="line">&gt; EXEC</span><br><span class="line">1) (integer) 1</span><br><span class="line">2) (integer) 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>other commands never execute during a Redis transaction.</li>
+<li>all the commands will be executed util <code>EXEC</code> is called.</li>
+</ul>
+<h3 id="Redis-does-not-support-roll-backs"><a href="#Redis-does-not-support-roll-backs" class="headerlink" title="Redis does not support roll backs"></a>Redis does not support roll backs</h3><ul>
+<li>rarely fail but called with a wrong syntax. This kind of error that is very likely to be detected during development, and not in production.</li>
+<li>simplified and faster</li>
+</ul>
+<h2 id="Redis-Mass-Insertion"><a href="#Redis-Mass-Insertion" class="headerlink" title="Redis Mass Insertion"></a>Redis Mass Insertion</h2><h3 id="Use-the-protocol-Luke"><a href="#Use-the-protocol-Luke" class="headerlink" title="Use the protocol, Luke"></a>Use the protocol, Luke</h3><p><code>redis-cli --pipe</code>, in <code>Redis Protocol specification</code></p>
+<h2 id="Partitioning"><a href="#Partitioning" class="headerlink" title="Partitioning"></a>Partitioning</h2><h3 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h3><ul>
+<li>larger <code>databases</code></li>
+<li>multiple <code>cores</code> and <code>computers</code> and <code>network bandwidth</code> and so on.</li>
+</ul>
+<h3 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h3><ul>
+<li><code>range partitioning</code>: need extra storage</li>
+<li><code>hash partitioning</code>: may be not that scalable</li>
+</ul>
+<h3 id="Different-implementations-of-partitioning"><a href="#Different-implementations-of-partitioning" class="headerlink" title="Different implementations of partitioning"></a>Different implementations of partitioning</h3><ul>
+<li><code>Client side partitioning</code>: the <code>client implementations</code> decides which redis-server to select to read or write</li>
+<li><code>Proxy assisted partitioning</code>: the client sends requests to a <code>proxy</code>. The proxy will make sure to forward our request to the right Redis instance accordingly to the configured partitioning schema, and will send the replies back to the client. </li>
+<li><code>Query routing</code>: <code>Redis Cluster</code> implements an hybrid form of query routing.</li>
+</ul>
+<h3 id="Disadvantages-of-partitioning"><a href="#Disadvantages-of-partitioning" class="headerlink" title="Disadvantages of partitioning"></a>Disadvantages of partitioning</h3><ul>
+<li>Operations involving <code>multiple keys</code> are usually not supported</li>
+<li><code>Redis transactions involving multiple keys</code> can not be used</li>
+<li>The partitioning <code>granularity</code> is the <code>key</code>, so it is not possible to shard a dataset with a single huge key like a very big sorted set.</li>
+<li><code>data handling</code> is more complex</li>
+<li>Adding and removing <code>capacity</code> can be complex</li>
+</ul>
+<h3 id="Presharding"><a href="#Presharding" class="headerlink" title="Presharding"></a>Presharding</h3><p>Using Redis replication you will likely be able to do the move with minimal or no downtime for your users:</p>
+<ol>
+<li>Start empty instances in your new server.</li>
+<li>Move data configuring these new instances as slaves for your source instances.</li>
+<li>Stop your clients.</li>
+<li>Update the configuration of the moved instances with the new server IP address.</li>
+<li>Send the SLAVEOF NO ONE command to the slaves in the new server.</li>
+<li>Restart your clients with the new updated configuration.</li>
+<li>Finally shut down the no longer used instances in the old server.</li>
+</ol>
+<h3 id="Implementations-of-Redis-partitioning"><a href="#Implementations-of-Redis-partitioning" class="headerlink" title="Implementations of Redis partitioning"></a>Implementations of Redis partitioning</h3><ul>
+<li>Redis Cluster: <code>query routing</code> and <code>client side partitioning</code></li>
+<li>Twemproxy: Twemproxy is a proxy developed at Twitter</li>
+<li>Clients supporting consistent hashing</li>
+</ul>
+<h2 id="Secondary-indexing"><a href="#Secondary-indexing" class="headerlink" title="Secondary indexing"></a>Secondary indexing</h2><h2 id="Redis-data-types-and-abstractions"><a href="#Redis-data-types-and-abstractions" class="headerlink" title="Redis data types and abstractions"></a>Redis data types and abstractions</h2><ul>
+<li>Binary-safe strings</li>
+<li>Lists: basically <code>linked lists</code></li>
+<li>Sets</li>
+<li>Sorted sets</li>
+<li>Hashes</li>
+<li>Bit arrays (or simply bitmaps)</li>
+<li>HyperLogLogs</li>
+<li>Streams: append-only collections of map-like entries that provide an abstract log data type</li>
+</ul>
+<h3 id="Redis-Keys"><a href="#Redis-Keys" class="headerlink" title="Redis Keys"></a>Redis Keys</h3><ul>
+<li>Very long keys are not a good idea: for several costly key-comparisons</li>
+<li>Very short keys are often not a good idea: more readable</li>
+<li><code>object-type:id</code> is a good idea</li>
+</ul>
+<h3 id="Redis-Strings"><a href="#Redis-Strings" class="headerlink" title="Redis Strings"></a>Redis Strings</h3><ul>
+<li><code>SET</code>/<code>GET</code></li>
+<li><code>MSET</code>/<code>MGET</code></li>
+<li><code>INCR</code>/<code>DECR</code>/<code>INCRBY</code>/<code>DECRBY</code>: parses the string value as an integer, increments it by one. Atomic.</li>
+<li><code>GETSET</code>: sets a key to a new value, returning the old value as the result.</li>
+<li><code>EXISTS</code>/<code>DEL</code>/<code>TYPE</code></li>
+<li><code>EXPIRE</code>/<code>PEXPIRE</code></li>
+</ul>
+<h3 id="Redis-Lists"><a href="#Redis-Lists" class="headerlink" title="Redis Lists"></a>Redis Lists</h3><p>Redis lists are implemented via <code>Linked Lists</code>, that means adding a new element is performed in constant time.</p>
+<ul>
+<li><code>LPUSH</code>/<code>RPUSH</code></li>
+<li><code>LRANGE</code></li>
+<li><code>RPOP</code>/<code>LPOP</code></li>
+<li><code>LTRIM</code>/<code>RTRIM</code></li>
+<li><code>BRPOP</code>/<code>BLPOP</code></li>
+<li><code>RPOPLPUSH</code>/<code>BRPOPLPUSH</code></li>
+</ul>
+<h3 id="Redis-Hashes"><a href="#Redis-Hashes" class="headerlink" title="Redis Hashes"></a>Redis Hashes</h3><ul>
+<li><code>HGET</code>/<code>HSET</code>/<code>HMGET</code>/<code>HMSET</code></li>
+<li><code>HINCRBY</code>/<code>HDECRBY</code></li>
+</ul>
+<h3 id="Redis-Sets"><a href="#Redis-Sets" class="headerlink" title="Redis Sets"></a>Redis Sets</h3><ul>
+<li><code>SADD</code>/<code>SMEMBERS</code></li>
+<li><code>SISMEMER</code></li>
+<li><code>SINTER</code></li>
+<li><code>SPOP</code></li>
+<li><code>SUNIONSTORE</code></li>
+<li><code>SCARD</code></li>
+</ul>
+<h3 id="Redis-Sorted-sets"><a href="#Redis-Sorted-sets" class="headerlink" title="Redis Sorted sets"></a>Redis Sorted sets</h3><ul>
+<li><code>ZADD</code></li>
+<li><code>ZRANGE</code>/<code>ZREVRANGE</code></li>
+<li><code>ZRANGEBYSCORE</code></li>
+<li><code>ZREMRANGEBYSCORE</code></li>
+<li><code>ZRANK</code>/<code>ZREVRANK</code></li>
+</ul>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><ul>
+<li><code>SETBIT</code>/<code>GETBIT</code></li>
+<li><code>BITOP</code></li>
+<li><code>BITCOUNT</code></li>
+<li><code>BITPOS</code></li>
+</ul>
+</div><div class="tags"><a href="/tags/redis/"><i class="fa fa-tag"></i>redis</a></div><div class="post-nav"><a class="pre" href="/2019/09/16/%E5%85%B3%E4%BA%8E%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E3%80%81%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B1%87%E6%80%BB/">关于团队管理的一些思考、学习和汇总</a><a class="next" href="/2019/08/24/tornado-async-note/">Tornado Async Note</a></div></div></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
